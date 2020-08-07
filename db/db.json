@@ -1,1 +1,27 @@
-[]
+[
+    {
+        "id" : "00000",
+        "title" : "Note 0",
+        "text": "English"
+    },
+    {
+        "id" : "11111",
+        "title" : "нота 1",
+        "text": "Russian"
+    },
+    {
+        "id" : "22222",
+        "title" : "Nota 2",
+        "text": "Spanish"
+    },
+    {
+        "id" : "33333",
+        "title" : "注意 3",
+        "text": "Mandarin"
+    },
+    {
+        "id" : "44444",
+        "title" : "ملحوظة 4",
+        "text":"Arabic"
+    }
+]
