@@ -1,16 +1,23 @@
 const express = require('express')
-const uuid = require('uuid')
-const router = express.Router()
-const db = require('../../db/db.json')
 const path = require('path')
+const uuid = require('uuid')
 const { Writer } = require('../../helper/writer')
 
+const router = express.Router()
 
 //GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON.
-router.get('/', (req, res) => res.json(db))
+router.get('/', async (req, res) => {
+    const dbpath = path.join(__dirname, '../../db', '/db.json')
+    let writer = new Writer()
+    let db = await writer.printFile(dbpath)
+    res.json(db)
+})
 
 //GET Single Note `/api/notes/:id`
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
+    const dbpath = path.join(__dirname, '../../db', '/db.json')
+    let writer = new Writer()
+    let db = await writer.printFile(dbpath)
     const found = db.some(note => note.id === req.params.id)
     if(found) {
         res.json(db.filter(note => note.id === req.params.id))
@@ -21,10 +28,10 @@ router.get('/:id', (req, res) => {
 })
 
 //POST `/api/notes` Create a Note 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    const dbpath = path.join(__dirname, '../../db', '/db.json')
     let writer = new Writer()
-    let dbpath = path.resolve(__dirname,'../../db/')
-    dbpath += '/db.json'
+    let db = await writer.printFile(dbpath)
     genId = uuid.v4()
 
     const newNote = {
@@ -41,14 +48,17 @@ router.post('/', (req, res) => {
     writer.fileClear(dbpath)
     writer.fileAppend(dbpath, JSON.stringify(db), 'POST')
     res.json(db)
-}) 
+})
 
 //PUT `/api/notes/:id` Update an existing note
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
+    const dbpath = path.join(__dirname, '../../db', '/db.json')
+    let writer = new Writer()
+    let db = await writer.printFile(dbpath)
+
     const found = db.some(note => note.id === req.params.id)
     if(found) {
         const updatedNote = req.body
-        //res.json(db.filter(note => note.id === req.params.id))
         db.forEach(note => {
             if(note.id === req.params.id) {
                 //new title is sent we will update attribute if not we will keep the old one
@@ -64,19 +74,23 @@ router.put('/:id', (req, res) => {
 })
 
 //DELETE `/api/notes/:id` Delete an existing note
-router.delete('/:id', function (req, res) {
+router.delete('/:id', async (req, res) => {
+    const dbpath = path.join(__dirname, '../../db', '/db.json')
     let writer = new Writer()
-    let dbpath = path.resolve(__dirname,'../../db/')
-    dbpath += '/db.json'
+    let db = await writer.printFile(dbpath)
+
     const found = db.some(note => note.id === req.params.id)
     if(found) {
         let buffer = db.filter(note => note.id !== req.params.id)
         res.json({
             msg: `Deleted Note, ID: ${req.params.id}`, 
-            notes: db.filter(note => note.id !== req.params.id) 
+            notes: db.filter(note => note.id !== req.params.id)             
         })
+        if(buffer === '') { 
+            buffer = []
+        }
         writer.fileClear(dbpath)
-        writer.fileAppend(dbpath, JSON.stringify(buffer), 'POST')
+        writer.fileAppend(dbpath, JSON.stringify(buffer), 'DELETE')
     }
     else {
         res.status(404).json({ msg: `No note is available with index ${req.params.id}`})
