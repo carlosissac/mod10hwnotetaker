@@ -20,7 +20,7 @@ For users that need to keep track of a lot of information, it's easy to forget o
     * [Initial Requirements](#Initial%20Requirements)
     * [Application Requirements](#Application%20Requirements)
     * [Submission Requirements](#Submission%20Requirements)
-* [App Usage](#App%20Usage)
+* [Application Dependencies and Usage](#Application%20Dependencies%20and%20Usage)
     * [Dependencies](#Dependencies)
     * [Dev Dependencies](#Dev%20Dependecies)
     * [Installation](#Installation)
@@ -154,7 +154,7 @@ test/ ...................... JEST Unit tests
 
 app.js ..................... Runs the application and captures input using inquirer
 ```
-## AppUsage
+## Application Dependencies and Usage
 
 ### Dependencies
 
