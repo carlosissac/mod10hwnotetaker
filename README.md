@@ -8,7 +8,7 @@ For users that need to keep track of a lot of information, it's easy to forget o
 
 ## Gif
 
-![image](./public/images/mod11hwnotetaker.gif)
+![image](./public/assets/images/mod11hwnotetaker.gif)
 
 ## Table Of Contents
 
