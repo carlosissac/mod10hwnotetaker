@@ -4,9 +4,11 @@
 
 ## Description
 
-For users that need to keep track of a lot of information, it's easy to forget or be unable to recall something important. Being able to take persistent notes allows users to have written information available when needed.
+Application made to help users that need to keep track of a lot of information in order to avoid forgetting something important. Being able to take persistent notes will allow users to have written information available when needed.
 
-## Gif
+## GIF
+
+Below is a quick demo walkingthorugh the main app functionality using a GIF.
 
 ![image](./public/assets/images/mod11hwnotetaker.gif)
 
@@ -14,238 +16,139 @@ For users that need to keep track of a lot of information, it's easy to forget o
 
 * [Description](#Description)
 * [Gif](#Gif)
-* [Table Of Contents](#Table%20Of%20Contents)
-* [User Story](#User%20Story)
-* [Acceptance Checklist](#Acceptance%20Checklist)
-    * [Initial Requirements](#Initial%20Requirements)
-    * [Application Requirements](#Application%20Requirements)
-    * [Submission Requirements](#Submission%20Requirements)
-* [Application Dependencies and Usage](#Application%20Dependencies%20and%20Usage)
+* [TableOfContents](#TableOfContents)
+* [UserStory](#UserStory)
+* [AcceptanceChecklist](#AcceptanceChecklist)
+    * [InitialRequirements](#InitialRequirements)
+    * [ApplicationRequirements](#ApplicationRequirements)
+    * [SubmissionRequirements](#SubmissionRequirements)
+* [AppDescription](#AppDescription)
     * [Dependencies](#Dependencies)
-    * [Dev Dependencies](#Dev%20Dependecies)
+    * [DevDependencies](#DevDependecies)
     * [Installation](#Installation)
     * [Configuration](#Configuration)
     * [Operation](#Operation)
-    * [Output](#Output)
     * [Bonus](#Bonus)
-* [Features](#Features)
-* [Video Walkthrough](#Video%20Walkthrough)
+* [Links](#Links)
 
 ## User Story
 
-AS A manager
+AS A user, I want to be able to write and save notes
 
-I WANT to generate a webpage that displays my team's basic info
+I WANT to be able to delete notes I've written before
 
-SO THAT I have quick access to emails and GitHub profiles
+SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
 ## Acceptance Checklist
 
 ### Initial Requirements
 
-You will build a software engineering team generator command line application. 
+Create an application that can be used to write, save, and delete notes. This application will use an `express` backend and save and retrieve note data from a `JSON` file.
 
-The application will prompt the user for information about the team manager and then information about the team members.
+- Done. Issac.
 
-The user can input any number of team members, and they may be a mix of engineers and interns. 
+The application frontend has already been created, it's your job to build the backend and connect the two.
 
-- `Product Owner`, `Scrum Master`, `Tech Lead`, `QA` categories were added. Issac.
+- Front end was not modified in any way in order to implement backend. Done. Issac.
 
-This assignment must also pass all unit tests.
+The following HTML routes should be created:
 
-- All js files were unit tested with the exception of `app.js`. Mocking inquirer input using JEST turned out to be very difficult to achieve. Issac
+GET `/notes` - Should return the `notes.html` file.
 
-When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. 
+GET `*` - Should return the `index.html` file
 
-- Final HTML page is built using `Materialize`, includes `Fontawesome` linkage, CSS styling, also includes a sticky footer and nav bar. Issac.
+- HTML routes are being published from the following location: `./routes/public/pages.js`. Done. Issac
+
+The application should have a `db.json` file on the backend that will be used to store and retrieve notes using the `fs` module.
+
+- `JSON` file is being hosted in the following location `./db/db.json`. JSON content is being modifified by using `./helper/writer.js` module. `writer.js` promisifies `fileClear`, `fileAppend` and `fileRead` methods from `fs` and exposes them to be used by the API routes. Issac.
+
+The following API routes should be created:
+
+GET `/api/notes` - Should read the `db.json` file and return all saved notes as `JSON`.
+
+- Done. Issac.
+
+POST `/api/notes` - Should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client.
+
+- Done. Issac.
+
+DELETE `/api/notes/:id` - Should receive a query parameter containing the id of a note to delete. 
+This means you'll need to find a way to give each note a unique `id` when it's saved. 
+In order to delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
+
+- `UUID`npm library was used in order to generate an unique ID in the `POST` route. We slice the string and only use the last 5 digits for our unique ID. Issac.
 
 ### Application Requirements
 
-The project must have these classes: `Employee`, `Manager`, `Engineer`, `Intern`. The tests for these classes in the `tests` directory must all pass.
+Application should allow users to create and save notes.
 
-- App includes the mentioned classes along with `Product Owner`, `Scrum Master`, `Tech Lead` and `QA`. Issac.
+- Done. Issac.
 
-Classes inherited from `Employee` parent class will have the following properties and methods: `name`, `id`, `email`, `position`, `getName()`, `getId()`, `getEmail()`, `getPosition()` 
+Application should allow users to view previously saved notes.
 
-- Depending on the type of class defined it will have the attributes mentioned above. `Intern`, `QA` and `Engineer` classes will have an additional attribute called `recursive` in order to control recursive capture. Issac.
+- Done. Issac.
 
-- App includes the mentioned classes along with `Product Owner`, `Scrum Master`, `Tech Lead` and `QA`. Issac.
+Application should allow users to delete previously saved notes.
 
-The project must prompt the user to build an engineering team. An engineering team consists of a manager, and any number of engineers and interns.
-
-- As mentioned before we also included elements for `Product Owner`, `Scrum Master`, `Tech Lead` and `QA` positions. Issac.
+- Done. Issac.
 
 ### Submission Requirements
 
-Use the `Inquirer` to prompt the user for their `email`, `id`, and specific `attribute` based on role. 
+You will not be able to deploy your server side code on GitHub pages. This app should be deployed on Heroku.
 
-- Done. Issac
+- Heroku for the application being hosted in Heroku are provided in the [Links](#Links) section.
 
-Your app will run as a Node CLI to gather information about each employee.
-
-- Done. Issac
-
-Remember, the styling is completely up to you so try to make it unique.
-
-- Done. Issac
-
-In the `Develop` folder, there is a `package.json`, so make sure to `npm install`.
-
-- `package.json` and `app.js` are located in `root` folder. Issac
-
-Dependencies for this endeavor are `JEST` for running unit tests, and `Inquirer` for collecting input from the user.
-
-- `JEST` is listed as a Dev Dependency. Issac
-
-There are also unit tests to help you build the classes necessary. It is recommended that you follow this workflow: 1. Run tests. 2. Create or update classes to pass a single test case. 3. Repeat
-
-- Done. Issac
-
-Directory structure is the following:
-
-```
-assets/ .................... CSS styling.
-    style.css
- 
-helper/ .................... Classes to render HTML document.
-    builder.js ............. Orchestrates the HTML build operation   
-    writer.js .............. File interfacing methods
-
-lib/ ....................... Team member classes, all inherit from employee.js
-    employee.js ............ Base class for all team member elements.
-    engineer.js ............ Particular element attribute is GitHub.
-    intern.js .............. Particular element attribute is School.
-    manager.js ............. Particular element attribute is Organization.
-    productowner.js ........ Particular element attribute is Cost Center.
-    qa.js .................. Particular element attribute is Phase.
-    scrummaster.js ......... Particular element attribute is Project Code.
-    techlead.js ............ Particular element attribute is Area.
-
-output/ .................... Rendered output
-    team.html .............. Solution's output file.
-    team_jest.html ......... Output file for jest to write to separate output file.
-    team_locked.html ....... Output file for jest to try write to a locked file.
-
-templates/ ................. HTML template(s). Team member elements will be appended between Main1 and Main2 content.
-    endDiv.html ............ Has a </div> tag in order to finalize a row element.
-    engineer.html .......... Engineer element template.
-    intern.html ............ Intern element template.
-    main1.html ............. Main HTML content. It includes HEAD, and upper BODY area, and Project Name to be replaced. 
-    main2.html ............. Ending Main HTML content. Includes FOOTER, JQUERY linakge and sticky element script code. 
-    manager.html ........... Manager element template.
-    productowner.html ...... Productowner element template.
-    qa.html ................ QA element template.
-    sample.html ............ Finalized HTML sample to validate against output/team.hml.
-    scrummaster.html ....... Scrummaster element template.
-    sqRow.html ............. Tag to identify a row element.
-    techlead.html .......... Productowner element template.
-
-test/ ...................... JEST Unit tests
-    builder.test.js
-    employee.test.js
-    engineer.test.js
-    intern.test.js 
-    manager.test.js 
-    productowner.test.js 
-    qa.test.js 
-    scrummaster.test.js 
-    techlead.test.js 
-    writer.test.js 
-
-app.js ..................... Runs the application and captures input using inquirer
-```
 ## Application Dependencies and Usage
 
 ### Dependencies
 
+* `Express`. In order to create a webserver to publich our public pages and create the api routes.
+
+* `FS`. This package allows us to clear, append and/or read to our files.
+
+* `Moment`. We use this in otder to create a current timestamp.
+
+* `Path`. Add on is used to resolve and manipulate system document path structures.
+
+* `Util`. Required in order to promisify fs methods.
+
+* `UUID`. Deployed this in order to generate an unique id (last 5 digits used only).
+
 ### Dev Dependencies
 
-### Installation 
+* `Nodemon`. In order to restart webserver automatically evertytime we do a code update.
 
-*Step 1.* Clone repo into your localhost.
+### Usage 
 
-*Step 2.* Open Terminal and run "npm i --save" in order to install dependencies.
+*Step 1.* open link and landing page will appear. Click `Get Started` to begin:
 
-*Step 3.* Write "node app.js" in Terminal.
+![image](./public/assets/images/gui01.jpg)
 
-### Configuration 
+*Step 2.* Existing notes should appear listed on the left side of the screen. Click on existing notes in order to displat content on the main section of the screen.
 
-No configuration is needed.
+*Step 3.* Click where it says `Note Title` in order to submit a new note. 
 
-### Operation 
+*Step 4.* Afterwards click on where it says `Note Text` in order to submit the note's content.
 
-*Step 1.* Go to Terminal and `node app.js`.
+*Step 5.* A `Floppy Disk` icon will appear in the far right corner, click it in order to save.
 
-![image](./assets/operation01.jpg)
+![image](./public/assets/images/gui02.jpg)
 
-*Step 2.* Input `Project Name`.
+*Step 6.* Click on the trash icon in order to delete an existing note. 
 
-![image](./assets/operation02.jpg)
-
-*Step 3.* Input requested team member's `name`, `email` and team member's `target attribute`. 
-
-![image](./assets/operation03.jpg)
-
-*Step 4.* Input information for `Manager`, `Product Owner`, `Scrum Master` and `Tech Lead`. You're only allowed to submit one of these elements. 
-
-![image](./assets/operation04.jpg)
-
-*Step 5.* Input `Engineer`, `QA` and `Intern` team members. Since it's a recursive element capture you can input as many team members needed.
-
-![image](./assets/operation05.jpg)
-
-*Step 6.* Terminal will display a list of all the appended elements.
-
-![image](./assets/operation06.jpg)
-
-### Output 
-
-* Output File will be written in the following link [team.html](https://github.com/carlosissac/mod10teamprofilegen/blob/master/output/team.html)
-
-![image](./assets/output.jpg)
+![image](./public/assets/images/gui03.jpg)
 
 ### Bonus
 
-Use validation to ensure that the information provided is in the proper expected format.
+* PUT `/api/notes/:id` was deployed in order to update an existing note. Method is not plugged in the front end since the provided files dont have this functionality implemented.
 
-- List input is provided in `Manager`, `Tech Lead`, `QA`.
+* `middleware/logger.js` is deployed in order to log in the terminal everytime an api or html route is being hit.
 
-- 5 digit numeric input is required for `Scrum Master` and `Product Owner`.
-
-- Rest of inputs requires mandatory text input if test is not provided it will thorw an error.
-
-- Issac.
-
-![image](./assets/validation.jpg)
-
-Add the application to your portfolio.
-
-- `mod10teamprofilegen` is added to portfolio in the following [link](https://carlosissac.github.io/mod08hwprofessionalmaterials/).
-
-## Features
-
-* *Recursive Capture.* `Engineer`, `QA` and `Intern`, are allowed to capture as many elements as required.
-
-![image](./assets/operation05.jpg)
-
-* *GitHub links.* Engineering elements have working GitHub links.
-
-![image](./assets/operation07.jpg)
-
-* *Testing using JEST.* All files with the exception of `app.js` are unit tested using Jest. `app.js` includes the user input capture functionality using inquierer which resulted difficult to mock using JEST. Shown below are the snapshots of the testing coverage implemented.
-
-![image](./assets/test01.jpg)
-
-![image](./assets/test02.jpg)
-
-![image](./assets/test03.jpg)
-
-## Video Walkthrough
+## Links
 
 The following links provide video walkthroughs explaining the development decisions made for this project and a walkthrough of the usage of the app. Also provided is a slide deck for the explanation video
 
-* [Video Intro](https://youtu.be/RzNnGMWdHG8)
+* [Heroku Link](https://mod11hwnotetaker.herokuapp.com/)
 
-* [Slides](https://docs.google.com/presentation/d/1u0N-WSlIxcli8ZZkuJ8BqCimpyQfpO8YdvkVslMIwvc/edit?usp=sharing)
-
-* [Video Demo](https://youtu.be/jxbjp4-x-zY)
+* [GitHub Repo](https://github.com/carlosissac/mod11hwnotetaker)
