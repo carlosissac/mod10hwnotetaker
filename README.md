@@ -12,7 +12,7 @@ Below is a quick demo walkingthorugh the main app functionality using a GIF.
 
 ![image](./public/assets/images/mod11hwnotetaker.gif)
 
-## Table Of Contents
+## TableOfContents
 
 * [Description](#Description)
 * [Gif](#Gif)
@@ -25,13 +25,11 @@ Below is a quick demo walkingthorugh the main app functionality using a GIF.
 * [AppDescription](#AppDescription)
     * [Dependencies](#Dependencies)
     * [DevDependencies](#DevDependecies)
-    * [Installation](#Installation)
+    * [Usage](#Usage)
     * [Configuration](#Configuration)
-    * [Operation](#Operation)
-    * [Bonus](#Bonus)
 * [Links](#Links)
 
-## User Story
+## UserStory
 
 AS A user, I want to be able to write and save notes
 
@@ -39,9 +37,9 @@ I WANT to be able to delete notes I've written before
 
 SO THAT I can organize my thoughts and keep track of tasks I need to complete
 
-## Acceptance Checklist
+## AcceptanceChecklist
 
-### Initial Requirements
+### InitialRequirements
 
 Create an application that can be used to write, save, and delete notes. This application will use an `express` backend and save and retrieve note data from a `JSON` file.
 
@@ -79,7 +77,7 @@ In order to delete a note, you'll need to read all notes from the `db.json` file
 
 - `UUID`npm library was used in order to generate an unique ID in the `POST` route. We slice the string and only use the last 5 digits for our unique ID. Issac.
 
-### Application Requirements
+### ApplicationRequirements
 
 Application should allow users to create and save notes.
 
@@ -93,13 +91,13 @@ Application should allow users to delete previously saved notes.
 
 - Done. Issac.
 
-### Submission Requirements
+### SubmissionRequirements
 
 You will not be able to deploy your server side code on GitHub pages. This app should be deployed on Heroku.
 
 - Heroku for the application being hosted in Heroku are provided in the [Links](#Links) section.
 
-## Application Dependencies and Usage
+## AppDescription
 
 ### Dependencies
 
@@ -115,7 +113,7 @@ You will not be able to deploy your server side code on GitHub pages. This app s
 
 * `UUID`. Deployed this in order to generate an unique id (last 5 digits used only).
 
-### Dev Dependencies
+### DevDependencies
 
 * `Nodemon`. In order to restart webserver automatically evertytime we do a code update.
 
