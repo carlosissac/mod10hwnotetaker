@@ -1,6 +1,6 @@
 # 11 Express: Note Taker
 
-![GitHub last commit](https://img.shields.io/github/last-commit/carlosissac/mod11hwnotetaker) ![Twitter Follow](https://img.shields.io/twitter/follow/zzzakk_cccrlss?style=social) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/carlosissac/mod11hwnotetaker) ![GitHub followers](https://img.shields.io/github/followers/carlosissac?style=social) 
+![GitHub last commit](https://img.shields.io/github/last-commit/carlosissac/mod11hwnotetaker) ![Twitter Follow](https://img.shields.io/twitter/follow/zzzakk_cccrlss?style=social) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/carlosissac/mod11hwnotetaker) ![GitHub followers](https://img.shields.io/github/followers/carlosissac?style=social)
 
 ## Description
 
@@ -8,7 +8,7 @@ Application made to help users that need to keep track of a lot of information i
 
 ## GIF
 
-Below is a quick demo walkingthorugh the main app functionality using a GIF.
+Below is a quick demo walk through the main app functionality using a GIF.
 
 ![image](./public/assets/images/mod11hwnotetaker.gif)
 
@@ -19,14 +19,14 @@ Below is a quick demo walkingthorugh the main app functionality using a GIF.
 * [TableOfContents](#TableOfContents)
 * [UserStory](#UserStory)
 * [AcceptanceChecklist](#AcceptanceChecklist)
-    * [InitialRequirements](#InitialRequirements)
-    * [ApplicationRequirements](#ApplicationRequirements)
-    * [SubmissionRequirements](#SubmissionRequirements)
+   * [InitialRequirements](#InitialRequirements)
+   * [ApplicationRequirements](#ApplicationRequirements)
+   * [SubmissionRequirements](#SubmissionRequirements)
 * [AppDescription](#AppDescription)
-    * [Dependencies](#Dependencies)
-    * [DevDependencies](#DevDependecies)
-    * [Usage](#Usage)
-    * [Configuration](#Configuration)
+   * [Dependencies](#Dependencies)
+   * [DevDependencies](#DevDependecies)
+   * [Usage](#Usage)
+   * [Configuration](#Configuration)
 * [Links](#Links)
 
 ## UserStory
@@ -59,7 +59,7 @@ GET `*` - Should return the `index.html` file
 
 The application should have a `db.json` file on the backend that will be used to store and retrieve notes using the `fs` module.
 
-- `JSON` file is being hosted in the following location `./db/db.json`. JSON content is being modifified by using `./helper/writer.js` module. `writer.js` promisifies `fileClear`, `fileAppend` and `fileRead` methods from `fs` and exposes them to be used by the API routes. Issac.
+- `JSON` file is being hosted in the following location `./db/db.json`. JSON content is being modified by using `./helper/writer.js` module. `writer.js` promisifies `fileClear`, `fileAppend` and `fileRead` methods from `fs` and expose them to be used by the API routes. Issac.
 
 The following API routes should be created:
 
@@ -71,8 +71,8 @@ POST `/api/notes` - Should receive a new note to save on the request body, add i
 
 - Done. Issac.
 
-DELETE `/api/notes/:id` - Should receive a query parameter containing the id of a note to delete. 
-This means you'll need to find a way to give each note a unique `id` when it's saved. 
+DELETE `/api/notes/:id` - Should receive a query parameter containing the id of a note to delete.
+This means you'll need to find a way to give each note a unique `id` when it's saved.
 In order to delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
 
 - `UUID`npm library was used in order to generate an unique ID in the `POST` route. We slice the string and only use the last 5 digits for our unique ID. Issac.
@@ -101,11 +101,11 @@ You will not be able to deploy your server side code on GitHub pages. This app s
 
 ### Dependencies
 
-* `Express`. In order to create a webserver to publich our public pages and create the api routes.
+* `Express`. In order to create a web server to publish our public pages and create the api routes.
 
 * `FS`. This package allows us to clear, append and/or read to our files.
 
-* `Moment`. We use this in otder to create a current timestamp.
+* `Moment`. We use this in order to create a current timestamp.
 
 * `Path`. Add on is used to resolve and manipulate system document path structures.
 
@@ -115,17 +115,17 @@ You will not be able to deploy your server side code on GitHub pages. This app s
 
 ### DevDependencies
 
-* `Nodemon`. In order to restart webserver automatically evertytime we do a code update.
+* `Nodemon`. In order to restart the web server automatically everytime we do a code update.
 
-### Usage 
+### Usage
 
-*Step 1.* open link and landing page will appear. Click `Get Started` to begin:
+*Step 1.* Open link and landing page will appear. Click `Get Started` to begin:
 
 ![image](./public/assets/images/gui01.jpg)
 
-*Step 2.* Existing notes should appear listed on the left side of the screen. Click on existing notes in order to displat content on the main section of the screen.
+*Step 2.* Existing notes should appear listed on the left side of the screen. Click on existing notes in order to display content on the main section of the screen.
 
-*Step 3.* Click where it says `Note Title` in order to submit a new note. 
+*Step 3.* Click where it says `Note Title` in order to submit a new note.
 
 *Step 4.* Afterwards click on where it says `Note Text` in order to submit the note's content.
 
@@ -133,15 +133,15 @@ You will not be able to deploy your server side code on GitHub pages. This app s
 
 ![image](./public/assets/images/gui02.jpg)
 
-*Step 6.* Click on the trash icon in order to delete an existing note. 
+*Step 6.* Click on the trash icon in order to delete an existing note.
 
 ![image](./public/assets/images/gui03.jpg)
 
 ### Bonus
 
-* PUT `/api/notes/:id` was deployed in order to update an existing note. Method is not plugged in the front end since the provided files dont have this functionality implemented.
+* PUT `/api/notes/:id` was deployed in order to update an existing note. Method is not plugged in the front end since the provided files don't have this functionality implemented.
 
-* `middleware/logger.js` is deployed in order to log in the terminal everytime an api or html route is being hit.
+* `middleware/logger.js` is deployed in order to log in the terminal every time an api or html route is being hit.
 
 ## Links
 
